@@ -10,12 +10,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const uploadDir = path.join(__dirname, '/tmp/uploads');
+const uploadDir = path.join(__dirname, '/tmp/');
 
 // Verificar si la carpeta 'uploads' existe, si no, crearla
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
-  console.log('📂 Carpeta "uploads" creada.');
+  console.log('📂 Carpeta creada.');
 }
 
 // Configuración de Multer para guardar archivos en 'uploads'
