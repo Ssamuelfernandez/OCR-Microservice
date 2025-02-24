@@ -7,15 +7,16 @@ import multer from 'multer';
 
 // Obtener __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __dirname = path.dirname(__filename);
 
 const app = express();
-const uploadDir = path.join(__dirname, '/tmp/');
+// const uploadDir = path.join(__dirname, 'uploads');
+const uploadDir ='tmp';
 
 // Verificar si la carpeta 'uploads' existe, si no, crearla
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
-  console.log('📂 Carpeta creada.');
+  console.log('📂 Carpeta "uploads" creada.');
 }
 
 // Configuración de Multer para guardar archivos en 'uploads'
