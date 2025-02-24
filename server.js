@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 
 const app = express();
 // const uploadDir = path.join(__dirname, 'uploads');
-const uploadDir ='tmp';
+const uploadDir ='/tmp/';
 
 // Verificar si la carpeta 'uploads' existe, si no, crearla
 if (!fs.existsSync(uploadDir)) {
