@@ -6,12 +6,12 @@ import tesseract from 'tesseract.js';
 import multer from 'multer';
 
 // Obtener __dirname en ES Modules
-const __filename = fileURLToPath(import.meta.url);
+// const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
 const app = express();
 // const uploadDir = path.join(__dirname, 'uploads');
-const uploadDir ='/tmp/';
+const uploadDir = '/tmp/';
 
 // Verificar si la carpeta 'uploads' existe, si no, crearla
 if (!fs.existsSync(uploadDir)) {
@@ -73,15 +73,26 @@ app.post('/ocr', (req, res) => {
       const imagePath = file.path;
       console.log('✅ Imagen guardada en:', imagePath);
 
+
       try {
-        const { data: { text } } = await tesseract.recognize(imagePath, 'eng+spa');
+
+        const { data: { text } } = await tesseract.recognize(imagePath, 'eng+spa', {
+          corePath: 'https://ocr-microservice.vercel.app/tesseract/tesseract-core-simd.wasm'
+        });
+
+
         // Limpiar y formatear el texto extraído
         const textoLimpio = limpiarTextoOCR(text);
+
         results.push({ file: file.originalname, text: textoLimpio });
         console.log(`📄 Texto extraído de ${file.originalname}:`, textoLimpio);
+
+
       } catch (err) {
         console.error(`❌ Error al procesar la imagen ${file.originalname}:`, err);
         results.push({ file: file.originalname, error: 'Error al procesar la imagen' });
+
+
       } finally {
         // Eliminar el archivo de la carpeta "uploads" después de procesarlo
         fs.unlink(imagePath, (err) => {
