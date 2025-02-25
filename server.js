@@ -1,6 +1,7 @@
 import express from 'express';
 import tesseract from 'tesseract.js';
 import multer from 'multer';
+import { createWorker } from 'tesseract.js';
 
 const app = express();
 const storage = multer.memoryStorage();
@@ -40,15 +41,20 @@ app.post('/ocr', (req, res) => {
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: 'No se han subido imágenes' });
     }
+
+    const worker = await createWorker('eng+spa');
     let results = [];
 
     // Procesar cada imagen subida
     for (const file of req.files) {
       console.log('✅ Imagen recibida:', file.originalname);
-
+      const image = file.buffer;
       try {
 
-        const { data: { text } } = await tesseract.recognize(file.buffer, 'eng+spa');
+    //    const { data: { text } } = await tesseract.recognize(file.buffer, 'eng+spa');
+          
+          const { data: { text } } = await worker.recognize(image);
+
 
         // Limpiar y formatear el texto extraído
         const textoLimpio = limpiarTextoOCR(text);
