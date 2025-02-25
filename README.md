@@ -10,7 +10,7 @@ Utiliza Express para el servidor, Multer para la subida de archivos, y Tesseract
 ## Características
 
 - Subida de Archivos:   
-    Permite subir hasta 3 imágenes por petición y valida que los archivos sean imágenes.
+    Permite subir una imágen por petición y valida que los archivos sean imágenes.
 - Extracción de Texto:  
     Utiliza Tesseract.js configurado para reconocer textos en inglés y español.
 - Limpieza y Formateo:  
