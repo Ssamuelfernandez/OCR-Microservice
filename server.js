@@ -1,4 +1,3 @@
-import fs from 'fs';
 import express from 'express';
 import tesseract from 'tesseract.js';
 import multer from 'multer';
