@@ -51,7 +51,6 @@ app.post('/ocr', (req, res) => {
 
         const { data: { text } } = await tesseract.recognize(file.buffer, 'eng+spa');
 
-
         // Limpiar y formatear el texto extraído
         const textoLimpio = limpiarTextoOCR(text);
 

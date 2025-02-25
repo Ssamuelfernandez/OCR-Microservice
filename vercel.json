@@ -3,7 +3,12 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "functions": {
+        "api/**/*.js": {
+          "includeFiles": "node_modules/tesseract.js-core/tesseract-core-simd.wasm"
+        }
+      }
     }
   ],
   "routes": [
