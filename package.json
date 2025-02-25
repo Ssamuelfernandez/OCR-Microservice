@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "postinstall": "cp node_modules/tesseract.js-core/tesseract-core-simd.wasm* node_modules/tesseract.js-core/",
+    "postinstall": "cp node_modules/tesseract.js-core/tesseract-core-simd.wasm* public/tesseract/",
     "start": "node server.js"
   },
   "keywords": [],
